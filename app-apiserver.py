@@ -1,4 +1,4 @@
-import socket
+import socket, time, json
 from flask import Flask, request
 
 # Dirección IP y puerto del servidor
@@ -17,27 +17,26 @@ def send_message(sock, message):
 
 @app.route('/embebidos/outputs', methods=['POST'])
 def set_outputs():
-    global outputs
-    outputs = request.data.decode()
+    #global outputs
+    data = json.loads(request.data.decode())
+    outputs = data["outputs"]
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-    # Conectar el socket al servidor remoto
     client_socket.connect((SERVER_IP, SERVER_PORT))
     response = send_message(client_socket, outputs)
-    print('Respuesta del servidor:', response)
+    print('Recibido', outputs)
     client_socket.close()
     return "OK"
 
 
 @app.route('/embebidos/inputs', methods=['GET'])
 def get_inputs():
+    
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-    # Conectar el socket al servidor remoto
     client_socket.connect((SERVER_IP, SERVER_PORT))
     response = send_message(client_socket, 'get_inputs')
     print('Estados de las entradas GPIO:', response)
     client_socket.close()
+    #time.sleep(0.1)
     return response
 
 
@@ -45,3 +44,6 @@ def get_inputs():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8777)
+
+
+
