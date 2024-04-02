@@ -1,0 +1,94 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    padding: 2rem;
+    background-color: #333;
+    color: whitesmoke;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    font-size: 2rem;
+}
+
+ input{
+    font-size: 2rem;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+  button {
+    font-size: 1.5rem; /* Adjust the font size */
+    padding: 0.5rem 1rem; /* Adjust the padding */
+    border-radius: 5px; /* Adjust the border radius */
+}
+
+button.active {
+    background-color: khaki;
+}
+
+.container{
+    position: relative;
+    display: flex;
+}
+
+
+.house-plan img {
+    max-width: 100%; /* Ensure the images doesn't exceed its container */
+    height: auto; /* Maintain aspect ratio */
+    margin: 0 auto; /* Center the images horizontally */
+    margin-left: 20px ;
+}
+
+.padlock_image1{
+    position: absolute;
+    top: 270px;
+    left: 290px;
+}
+.padlock_image2{
+    position: absolute;
+    top: 25px;
+    left: 290px;
+}
+
+.padlock_image3{
+    position: absolute;
+    top: 130px;
+    left: 265px;
+}
+.padlock_image4{
+    position: absolute;
+    top: 225px;
+    left: 225px;
+}
+.Light_image1{
+    position: absolute;
+    top: 15px;
+    left: 165px;
+}
+.Light_image2{
+    position: absolute;
+    top: 175px;
+    left: 200px;
+}
+
+.Light_image3{
+    position: absolute;
+    top: 120px;
+    left: 300px;
+}
+.Light_image4{
+    position: absolute;
+    top: 260px;
+    left: 250px;
+}
+.Light_image5{
+    position: absolute;
+    top: 260px;
+    left: 205px;
+}
