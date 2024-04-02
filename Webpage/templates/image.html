@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Image</title>
+    <link type="text/css" href="{{url_for('static',filename='styles/style.css')}}" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container">
+        {% if showpic %}
+        <img src="../static/Image/image.png" alt="Luz 5">
+        {% endif %}    
+    </div>
+    <form action="/index" method="get">
+        <button>Back</button>
+    </form>
+
+</body>
+</html>

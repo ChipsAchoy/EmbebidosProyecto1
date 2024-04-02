@@ -92,3 +92,9 @@ button.active {
     top: 260px;
     left: 205px;
 }
+
+.camera_img{
+    position: absolute;
+    top: 0px;
+    left: 350px;
+}

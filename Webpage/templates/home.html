@@ -24,7 +24,12 @@
         }
         setInterval(callGetOutput, 5000);
     </script>
-    <h2>Welcome to the Home Page!</h2>
+    <h2>Bienvenido a su casa inteligente!</h2>
+    <div class="buttons">
+        <form action="/login" method="get">
+            <button >Log out</button>
+        </form>
+    </div> 
     <div class="container">
         <div class="buttons">
             <form action="/toggle_button/Light1" method="post">
@@ -49,9 +54,13 @@
             </form>
             <form action="/toggle_all" method="post">
                 <input type="hidden" name="button_id" value="LightAll">
-                <button>All Lights</button>
+                <button>All</button>
             </form>
-            <button onclick="takeImage()">Take Image</button>
+            <form action="/takeimg" method="get">
+                <input type="hidden" name="button_id" value="Img">
+                <button>Image</button>
+            </form>
+
         </div>
 
         <div class="house-plan">
@@ -82,8 +91,7 @@
             {% endif %}
             {% if button_states.get('Light5', False) %}
                 <img src="../static/Image/Luz.png" alt="Luz 5" class="Light_image5">
-            {% endif %}
-
+            {% endif %}        
         </div>
     </div>
 </body>
