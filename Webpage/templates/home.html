@@ -9,6 +9,16 @@
 
 <body>
     <script>
+        function takeImage(){
+            fetch('/takeimg')
+                .then(response=>response.json())
+                .then(data=>{
+                    var img = new Image();
+                    img.src = data.image_data;
+                    document.body.appendChild(img);
+                })
+                .catch(error=>console.error('Error:',error));
+        }
         function callGetOutput(){
             window.location.href = "/get_output";
         }
@@ -37,6 +47,11 @@
                 <input type="hidden" name="button_id" value="Light5">
                 <button class="{% if button_states['Light5'] %}active{% endif %}" name="Light5">Light 5</button>
             </form>
+            <form action="/toggle_all" method="post">
+                <input type="hidden" name="button_id" value="LightAll">
+                <button>All Lights</button>
+            </form>
+            <button onclick="takeImage()">Take Image</button>
         </div>
 
         <div class="house-plan">

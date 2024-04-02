@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request,redirect,url_for
+from flask import Flask,render_template,request,redirect,url_for,jsonify
 from waitress import serve
 import requests
 
@@ -78,7 +78,39 @@ def toggle_button(button_id):
     # Redirect back to the home page
     return redirect('/index')
 
+@app.route('/toggle_all', methods=['POST'])
+def toggle_all():
+    global button_states
+    # Toggle the state of the button
+    global button_states
+    button_states = {'Light1': True, 'Light2': True, 'Light3': True, 'Light4': True, 'Light5': True}
 
+    # Send request to Raspberry Pi API
+    outputs=""
+    for key in button_states.keys():
+        if button_states[key]==False:
+            outputs+="0"
+        else:
+            outputs+="1"
+    data = {"outputs":outputs}
+    print(data)
+    send_request_to_pi("outputs", data=data)
+
+    # Redirect back to the home page
+    return redirect('/index')
+
+@app.route('/takeimg',methods=['GET'])
+def Take_Img():
+    try:
+        response=requests.get('http://127.0.0.1:8777/embebidos/image')
+        response.raise_for_status()
+        image_data=response.text
+        print("DATA")
+        print(image_data)
+        return jsonify(image_data=image_data)
+    except requests.exceptions.RequestException as e:
+        print(f"Error processing data: {e}")
+        return e
 
 if __name__=="__main__":
     serve(app,host="0.0.0.0",port=5000)
